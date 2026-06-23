@@ -1,11 +1,12 @@
 # FlashPad
 
-Boogie Board-inspired ephemeral scratchpad for macOS.
-Write, copy, flash-erase.
+A Boogie Board-inspired ephemeral scratchpad for macOS.　
+Write, copy, and flash-erase.
 
 ## What is this?
 
-Draft text before posting to Slack, Teams, or any chat app — then copy and erase in one action. No files, no save dialogs, no history. Like an electronic memo pad, but on your Mac.
+Draft your messages for Slack, Teams, or any chat app — then copy and clear with a single click. 　
+No files, no save dialogs, no history. A simple scratchpad for your Mac.
 
 ## Features
 
