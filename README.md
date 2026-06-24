@@ -17,26 +17,24 @@ No files, no save dialogs, no history. A simple scratchpad for your Mac.
 - **Dark mode** — follows system appearance
 - **Lightweight** — ~10MB bundle, ~30MB memory
 
-## Requirements
+## Installation
 
-- macOS 13 (Ventura) or later
-- [Rust](https://rustup.rs/)
-- [Node.js](https://nodejs.org/) 18+
+Requires macOS 13 (Ventura) or later, [Rust](https://rustup.rs/), and [Node.js](https://nodejs.org/) 18+.
 
-## Getting Started
+```bash
+git clone https://github.com/course-k/flashpad.git
+cd flashpad
+npm install
+cargo tauri build --bundles app
+cp -r src-tauri/target/release/bundle/macos/FlashPad.app /Applications/
+```
+
+## Development
 
 ```bash
 npm install
 cargo tauri dev
 ```
-
-To build a release `.app`:
-
-```bash
-cargo tauri build --bundles app
-```
-
-The built app will be at `src-tauri/target/release/bundle/macos/FlashPad.app`.
 
 ## Keyboard Shortcuts
 
