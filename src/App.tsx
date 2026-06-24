@@ -4,7 +4,6 @@ import { getCurrentWindow } from "@tauri-apps/api/window";
 
 function App() {
   const [text, setText] = useState("");
-  const [clearAfterCopy, setClearAfterCopy] = useState(true);
   const [copied, setCopied] = useState(false);
   const copiedTimer = useRef<number | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -50,11 +49,9 @@ function App() {
       await writeText(text);
       showCopied();
     }
-    if (clearAfterCopy) {
-      setText("");
-    }
+    setText("");
     textareaRef.current?.focus();
-  }, [text, clearAfterCopy, showCopied]);
+  }, [text, showCopied]);
 
   const handleClear = useCallback(() => {
     setText("");
@@ -91,29 +88,19 @@ function App() {
         <div className={`copy-hud ${copied ? "visible" : ""}`}>Copied!</div>
       </div>
       <div className="toolbar">
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={clearAfterCopy}
-            onChange={(e) => setClearAfterCopy(e.target.checked)}
-          />
-          コピー後に消去
-        </label>
-        <div className="toolbar-actions">
-          <button
-            onClick={handleCopy}
-            className="btn btn-primary"
-          >
-            コピー
-          </button>
-          <button
-            onClick={handleClear}
-            className="btn"
-            title="消去 (⌘⇧⌫)"
-          >
-            消去
-          </button>
-        </div>
+        <button
+          onClick={handleCopy}
+          className="btn btn-primary"
+        >
+          コピー
+        </button>
+        <button
+          onClick={handleClear}
+          className="btn"
+          title="消去 (⌘⇧⌫)"
+        >
+          消去
+        </button>
       </div>
     </div>
   );

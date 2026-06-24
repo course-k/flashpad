@@ -1,7 +1,7 @@
 :root {
   --bg: #1e1e1e;
   --fg: #e0e0e0;
-  --fg-secondary: #999;
+
   --toolbar-bg: #2a2a2a;
   --btn-bg: #3a3a3a;
   --btn-hover: #4a4a4a;
@@ -76,30 +76,11 @@ body {
 .toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 6px;
   padding: 10px 16px;
   background: var(--toolbar-bg);
   border-top: 1px solid var(--border);
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--fg-secondary);
-  cursor: pointer;
-  white-space: nowrap;
-  user-select: none;
-}
-
-.checkbox-label input[type="checkbox"] {
-  margin: 0;
-}
-
-.toolbar-actions {
-  display: flex;
-  gap: 6px;
 }
 
 .btn {
