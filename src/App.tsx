@@ -43,7 +43,11 @@ function App() {
     }
 
     if (clearAfterCopy) {
-      setText("");
+      if (hasSelection) {
+        setText(text.slice(0, selectionStart) + text.slice(selectionEnd));
+      } else {
+        setText("");
+      }
     }
     textarea.focus();
   }, [text, clearAfterCopy]);
