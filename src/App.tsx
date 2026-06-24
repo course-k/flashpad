@@ -68,14 +68,17 @@ function App() {
 
   return (
     <div className="container">
-      <textarea
-        ref={textareaRef}
-        className="editor"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="下書きを入力..."
-        spellCheck={false}
-      />
+      <div className="editor-area">
+        <textarea
+          ref={textareaRef}
+          className="editor"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="下書きを入力..."
+          spellCheck={false}
+        />
+        <div className={`copy-hud ${copied ? "visible" : ""}`}>Copied!</div>
+      </div>
       <div className="toolbar">
         <label className="checkbox-label">
           <input
@@ -88,10 +91,10 @@ function App() {
         <div className="toolbar-actions">
           <button
             onClick={handleCopy}
-            className={`btn btn-primary ${copied ? "btn-copied" : ""}`}
+            className="btn btn-primary"
             title="テキストを選択するとその範囲のみコピーされます"
           >
-            {copied ? "Copied!" : "コピー"}
+            コピー
           </button>
           <button
             onClick={handleClear}
