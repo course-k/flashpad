@@ -34,11 +34,22 @@ pub fn run() {
                 .icon(app.default_window_icon().unwrap().clone())
                 .tooltip("FlashPad")
                 .on_tray_icon_event(|tray, event| {
-                    if let tauri::tray::TrayIconEvent::Click { .. } = event {
+                    if let tauri::tray::TrayIconEvent::Click {
+                        button: tauri::tray::MouseButton::Left,
+                        button_state: tauri::tray::MouseButtonState::Up,
+                        ..
+                    } = event
+                    {
                         toggle_window(tray.app_handle());
                     }
                 })
                 .build(app)?;
+
+            if let Some(window) = app.get_webview_window("main") {
+                let _ = window.show();
+                let _ = window.set_focus();
+            }
+
             Ok(())
         })
         .run(tauri::generate_context!())

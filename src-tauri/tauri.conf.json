@@ -12,10 +12,6 @@
   "app": {
     "withGlobalTauri": true,
     "macOSPrivateApi": true,
-    "trayIcon": {
-      "iconPath": "icons/tray-icon.png",
-      "iconAsTemplate": true
-    },
     "windows": [
       {
         "title": "FlashPad",
@@ -44,11 +40,6 @@
     ],
     "macOS": {
       "minimumSystemVersion": "13.0"
-    }
-  },
-  "plugins": {
-    "global-shortcut": {
-      "shortcuts": []
     }
   }
 }

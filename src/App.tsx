@@ -4,6 +4,8 @@ import { getCurrentWindow } from "@tauri-apps/api/window";
 
 function App() {
   const [text, setText] = useState("");
+  const [clearAfterCopy, setClearAfterCopy] = useState(true);
+  const [copied, setCopied] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -36,8 +38,15 @@ function App() {
 
     if (contentToCopy) {
       await writeText(contentToCopy);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
     }
-  }, [text]);
+
+    if (clearAfterCopy) {
+      setText("");
+    }
+    textarea.focus();
+  }, [text, clearAfterCopy]);
 
   const handleClear = useCallback(() => {
     setText("");
@@ -46,22 +55,8 @@ function App() {
     }
   }, []);
 
-  const handleCopyAndClear = useCallback(async () => {
-    if (text) {
-      await writeText(text);
-    }
-    setText("");
-    if (textareaRef.current) {
-      textareaRef.current.focus();
-    }
-  }, [text]);
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.metaKey && e.shiftKey && e.key === "c") {
-        e.preventDefault();
-        handleCopyAndClear();
-      }
       if (e.metaKey && e.shiftKey && e.key === "Backspace") {
         e.preventDefault();
         handleClear();
@@ -69,7 +64,7 @@ function App() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleCopyAndClear, handleClear]);
+  }, [handleClear]);
 
   return (
     <div className="container">
@@ -82,15 +77,17 @@ function App() {
         spellCheck={false}
       />
       <div className="toolbar">
-        <button onClick={handleCopy} className="btn" title="コピー (⌘C)">
+        <label className="checkbox-label">
+          <input
+            type="checkbox"
+            checked={clearAfterCopy}
+            onChange={(e) => setClearAfterCopy(e.target.checked)}
+          />
+          コピー後に消去
+        </label>
+        <span className={`copy-toast ${copied ? "visible" : ""}`}>Copied!</span>
+        <button onClick={handleCopy} className="btn btn-primary" title="コピー">
           コピー
-        </button>
-        <button
-          onClick={handleCopyAndClear}
-          className="btn btn-primary"
-          title="コピーして消去 (⌘⇧C)"
-        >
-          コピー＆消去
         </button>
         <button
           onClick={handleClear}
