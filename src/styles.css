@@ -1,7 +1,7 @@
 :root {
   --bg: #1e1e1e;
   --fg: #e0e0e0;
-  --toolbar-bg: #1e2b26;
+  --toolbar-bg: #2a2a2a;
   --fg-muted: #777;
   --btn-bg: rgba(255, 255, 255, 0.06);
   --btn-hover: rgba(255, 255, 255, 0.1);
@@ -17,7 +17,7 @@
   :root {
     --bg: #ffffff;
     --fg: #1a1a1a;
-    --toolbar-bg: #f2f8f5;
+    --toolbar-bg: #f8f8f8;
     --fg-muted: #999;
     --btn-bg: rgba(0, 0, 0, 0.04);
     --btn-hover: rgba(0, 0, 0, 0.08);
@@ -86,7 +86,7 @@ body {
   gap: 6px;
   padding: 10px 16px;
   background: var(--toolbar-bg);
-  border-top: 1px solid var(--accent-border);
+  border-top: 1px solid var(--border);
 }
 
 .btn {
