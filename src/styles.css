@@ -134,24 +134,21 @@ body {
 
 .copy-hud {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  padding: 10px 24px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.7);
+  bottom: 8px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.02em;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity 0.2s;
 }
 
 .copy-hud.visible {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
 }
 
 @media (prefers-color-scheme: light) {
