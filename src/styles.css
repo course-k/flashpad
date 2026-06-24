@@ -10,7 +10,7 @@
   --accent-bg-hover: rgba(78, 204, 163, 0.2);
   --placeholder: #555;
   --border: #333;
-  --accent-border: rgba(78, 204, 163, 0.2);
+
 }
 
 @media (prefers-color-scheme: light) {
@@ -26,7 +26,7 @@
     --accent-bg-hover: rgba(42, 157, 110, 0.15);
     --placeholder: #aaa;
     --border: #e5e5e5;
-    --accent-border: rgba(42, 157, 110, 0.15);
+
   }
 }
 
