@@ -62,15 +62,20 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const handleMouseUp = () => handleSelectionCopy();
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.metaKey && e.shiftKey && e.key === "Backspace") {
         e.preventDefault();
         handleClear();
       }
     };
+    document.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleClear]);
+    return () => {
+      document.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleSelectionCopy, handleClear]);
 
   return (
     <div className="container">
@@ -80,7 +85,6 @@ function App() {
           className="editor"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          onMouseUp={handleSelectionCopy}
           placeholder="下書きを入力..."
           spellCheck={false}
         />
