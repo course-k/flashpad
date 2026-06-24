@@ -6,7 +6,14 @@ function App() {
   const [text, setText] = useState("");
   const [clearAfterCopy, setClearAfterCopy] = useState(true);
   const [copied, setCopied] = useState(false);
+  const copiedTimer = useRef<number | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const showCopied = useCallback(() => {
+    if (copiedTimer.current) clearTimeout(copiedTimer.current);
+    setCopied(true);
+    copiedTimer.current = setTimeout(() => setCopied(false), 1500);
+  }, []);
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -26,37 +33,32 @@ function App() {
     };
   }, []);
 
-  const handleCopy = useCallback(async () => {
+  const handleSelectionCopy = useCallback(async () => {
     const textarea = textareaRef.current;
     if (!textarea) return;
-
     const { selectionStart, selectionEnd } = textarea;
-    const hasSelection = selectionStart !== selectionEnd;
-    const contentToCopy = hasSelection
-      ? text.slice(selectionStart, selectionEnd)
-      : text;
-
-    if (contentToCopy) {
-      await writeText(contentToCopy);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+    if (selectionStart === selectionEnd) return;
+    const selected = textarea.value.slice(selectionStart, selectionEnd);
+    if (selected) {
+      await writeText(selected);
+      showCopied();
     }
+  }, [showCopied]);
 
+  const handleCopy = useCallback(async () => {
+    if (text) {
+      await writeText(text);
+      showCopied();
+    }
     if (clearAfterCopy) {
-      if (hasSelection) {
-        setText(text.slice(0, selectionStart) + text.slice(selectionEnd));
-      } else {
-        setText("");
-      }
+      setText("");
     }
-    textarea.focus();
-  }, [text, clearAfterCopy]);
+    textareaRef.current?.focus();
+  }, [text, clearAfterCopy, showCopied]);
 
   const handleClear = useCallback(() => {
     setText("");
-    if (textareaRef.current) {
-      textareaRef.current.focus();
-    }
+    textareaRef.current?.focus();
   }, []);
 
   useEffect(() => {
@@ -78,6 +80,7 @@ function App() {
           className="editor"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          onMouseUp={handleSelectionCopy}
           placeholder="下書きを入力..."
           spellCheck={false}
         />
@@ -96,7 +99,6 @@ function App() {
           <button
             onClick={handleCopy}
             className="btn btn-primary"
-            title="テキストを選択するとその範囲のみコピーされます"
           >
             コピー
           </button>
