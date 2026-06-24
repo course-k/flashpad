@@ -1,14 +1,13 @@
 :root {
   --bg: #1e1e1e;
   --fg: #e0e0e0;
-
   --toolbar-bg: #2a2a2a;
   --fg-muted: #777;
   --btn-bg: rgba(255, 255, 255, 0.06);
   --btn-hover: rgba(255, 255, 255, 0.1);
-  --accent: #4d8ef7;
-  --accent-bg: rgba(77, 142, 247, 0.12);
-  --accent-bg-hover: rgba(77, 142, 247, 0.18);
+  --accent: #e5a54b;
+  --accent-bg: rgba(229, 165, 75, 0.12);
+  --accent-bg-hover: rgba(229, 165, 75, 0.2);
   --placeholder: #555;
   --border: #333;
 }
@@ -17,13 +16,13 @@
   :root {
     --bg: #ffffff;
     --fg: #1a1a1a;
-    --fg-secondary: #888;
     --toolbar-bg: #f8f8f8;
     --fg-muted: #999;
     --btn-bg: rgba(0, 0, 0, 0.04);
     --btn-hover: rgba(0, 0, 0, 0.08);
-    --accent-bg: rgba(37, 99, 235, 0.08);
-    --accent-bg-hover: rgba(37, 99, 235, 0.14);
+    --accent: #c4872e;
+    --accent-bg: rgba(196, 135, 46, 0.08);
+    --accent-bg-hover: rgba(196, 135, 46, 0.15);
     --placeholder: #aaa;
     --border: #e5e5e5;
   }
@@ -123,8 +122,8 @@ body {
   right: 12px;
   padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  background: var(--accent-bg);
+  color: var(--accent);
   font-size: 11px;
   font-weight: 500;
   pointer-events: none;
@@ -134,10 +133,4 @@ body {
 
 .copy-hud.visible {
   opacity: 1;
-}
-
-@media (prefers-color-scheme: light) {
-  .copy-hud {
-    background: rgba(0, 0, 0, 0.75);
-  }
 }
