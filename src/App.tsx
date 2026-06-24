@@ -82,7 +82,7 @@ function App() {
           className="editor"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="下書きを入力..."
+          placeholder="Draft here..."
           spellCheck={false}
         />
         <div className={`copy-hud ${copied ? "visible" : ""}`}>Copied!</div>
@@ -92,14 +92,14 @@ function App() {
           onClick={handleCopy}
           className="btn btn-primary"
         >
-          コピー
+          Copy
         </button>
         <button
           onClick={handleClear}
           className="btn"
-          title="消去 (⌘⇧⌫)"
+          title="⌘⇧⌫"
         >
-          消去
+          Flash
         </button>
       </div>
     </div>
