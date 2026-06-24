@@ -3,10 +3,10 @@
   --fg: #e0e0e0;
 
   --toolbar-bg: #2a2a2a;
-  --btn-bg: #3a3a3a;
-  --btn-hover: #4a4a4a;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --fg-muted: #777;
+  --btn-hover: rgba(255, 255, 255, 0.08);
+  --accent: #4d8ef7;
+  --accent-bg: rgba(77, 142, 247, 0.1);
   --placeholder: #555;
   --border: #333;
 }
@@ -17,8 +17,9 @@
     --fg: #1a1a1a;
     --fg-secondary: #888;
     --toolbar-bg: #f8f8f8;
-    --btn-bg: #e8e8e8;
-    --btn-hover: #ddd;
+    --fg-muted: #999;
+    --btn-hover: rgba(0, 0, 0, 0.06);
+    --accent-bg: rgba(37, 99, 235, 0.08);
     --placeholder: #aaa;
     --border: #e5e5e5;
   }
@@ -87,15 +88,17 @@ body {
   padding: 6px 14px;
   border: none;
   border-radius: 6px;
-  background: var(--btn-bg);
-  color: var(--fg);
+  background: transparent;
+  color: var(--fg-muted);
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
 }
 
 .btn:hover {
   background: var(--btn-hover);
+  color: var(--fg);
 }
 
 .btn:active {
@@ -103,14 +106,12 @@ body {
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: white;
-  min-width: 72px;
-  transition: background 0.15s, min-width 0s;
+  color: var(--accent);
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: var(--accent-bg);
+  color: var(--accent);
 }
 
 .copy-hud {
