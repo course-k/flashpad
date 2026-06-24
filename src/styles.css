@@ -1,14 +1,14 @@
 :root {
   --bg: #1e1e1e;
   --fg: #e0e0e0;
+  --fg-secondary: #999;
   --toolbar-bg: #2a2a2a;
   --btn-bg: #3a3a3a;
   --btn-hover: #4a4a4a;
-  --btn-primary: #2563eb;
-  --btn-primary-hover: #1d4ed8;
-  --btn-danger: #dc2626;
-  --btn-danger-hover: #b91c1c;
-  --placeholder: #666;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-success: #16a34a;
+  --placeholder: #555;
   --border: #333;
 }
 
@@ -16,11 +16,12 @@
   :root {
     --bg: #ffffff;
     --fg: #1a1a1a;
-    --toolbar-bg: #f5f5f5;
-    --btn-bg: #e5e5e5;
-    --btn-hover: #d5d5d5;
-    --placeholder: #999;
-    --border: #ddd;
+    --fg-secondary: #888;
+    --toolbar-bg: #f8f8f8;
+    --btn-bg: #e8e8e8;
+    --btn-hover: #ddd;
+    --placeholder: #aaa;
+    --border: #e5e5e5;
   }
 }
 
@@ -50,7 +51,7 @@ body {
 .editor {
   flex: 1;
   width: 100%;
-  padding: 12px 16px;
+  padding: 16px 20px;
   border: none;
   outline: none;
   resize: none;
@@ -58,7 +59,7 @@ body {
   color: var(--fg);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -70,8 +71,8 @@ body {
 .toolbar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  justify-content: space-between;
+  padding: 10px 16px;
   background: var(--toolbar-bg);
   border-top: 1px solid var(--border);
 }
@@ -79,10 +80,9 @@ body {
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  color: var(--fg);
-  opacity: 0.7;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--fg-secondary);
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
@@ -92,23 +92,13 @@ body {
   margin: 0;
 }
 
-.copy-toast {
-  font-size: 11px;
-  color: var(--btn-primary);
-  opacity: 0;
-  transition: opacity 0.2s;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.copy-toast.visible {
-  opacity: 1;
+.toolbar-actions {
+  display: flex;
+  gap: 6px;
 }
 
 .btn {
-  flex: 0 0 auto;
-  min-width: 60px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border: none;
   border-radius: 6px;
   background: var(--btn-bg);
@@ -123,23 +113,24 @@ body {
 }
 
 .btn:active {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .btn-primary {
-  background: var(--btn-primary);
+  background: var(--accent);
   color: white;
+  min-width: 72px;
+  transition: background 0.15s, min-width 0s;
 }
 
 .btn-primary:hover {
-  background: var(--btn-primary-hover);
+  background: var(--accent-hover);
 }
 
-.btn-danger {
-  background: var(--btn-danger);
-  color: white;
+.btn-copied {
+  background: var(--accent-success);
 }
 
-.btn-danger:hover {
-  background: var(--btn-danger-hover);
+.btn-copied:hover {
+  background: var(--accent-success);
 }

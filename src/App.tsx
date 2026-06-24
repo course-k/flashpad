@@ -85,17 +85,22 @@ function App() {
           />
           コピー後に消去
         </label>
-        <span className={`copy-toast ${copied ? "visible" : ""}`}>Copied!</span>
-        <button onClick={handleCopy} className="btn btn-primary" title="コピー">
-          コピー
-        </button>
-        <button
-          onClick={handleClear}
-          className="btn btn-danger"
-          title="消去 (⌘⇧⌫)"
-        >
-          消去
-        </button>
+        <div className="toolbar-actions">
+          <button
+            onClick={handleCopy}
+            className={`btn btn-primary ${copied ? "btn-copied" : ""}`}
+            title="テキストを選択するとその範囲のみコピーされます"
+          >
+            {copied ? "Copied!" : "コピー"}
+          </button>
+          <button
+            onClick={handleClear}
+            className="btn"
+            title="消去 (⌘⇧⌫)"
+          >
+            消去
+          </button>
+        </div>
       </div>
     </div>
   );
